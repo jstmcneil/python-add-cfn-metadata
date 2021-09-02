@@ -1,0 +1,16 @@
+name: 'Insert-Name-as-Metadata'
+description: 'Takes CloudFormation file (yaml or json) and injects GitHub username as metadata.'
+inputs:
+  name-to-add:  # id of input
+    description: 'The name being added'
+    default: ${{ github.actor }}
+    required: true
+  template-name:  # id of input being deployed
+    description: 'Path to template being deployed.'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.template-name }}
+    - ${{ inputs.name-to-add }}

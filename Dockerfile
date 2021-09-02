@@ -2,7 +2,8 @@ FROM python:3
 
 RUN pip3 install pyyaml
 
-COPY add_data.py /add_data.py
-RUN chmod 777 /add_data.py
+RUN mkdir scripts
+COPY add_data.py /scripts/add_data.py
+RUN chmod -R 777 scripts
 
-ENTRYPOINT ["python3", "add_data.py"]
+ENTRYPOINT ["python3", "/scripts/add_data.py"]
